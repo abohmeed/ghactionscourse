@@ -2,11 +2,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy_summary:
+  coverage_summary:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy Application
-        run: echo "Deployed to https://myapp.example.com"
-        
-      - name: Add Deployment Link
-        run: echo "[🔗 View Deployment](https://myapp.example.com)" >> $GITHUB_STEP_SUMMARY
+      - name: Run Coverage
+        run: | 
+          echo "Code Coverage: 85%" > coverage.txt
+
+      - name: Add Coverage Summary
+        run: |
+          COVERAGE=$(cat coverage.txt)
+          echo "## 📊 Code Coverage Summary" >> $GITHUB_STEP_SUMMARY
+          echo "**Coverage:** $COVERAGE" >> $GITHUB_STEP_SUMMARY
