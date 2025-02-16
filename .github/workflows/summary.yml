@@ -2,15 +2,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  coverage_summary:
+  html_summary:
     runs-on: ubuntu-latest
     steps:
-      - name: Run Coverage
-        run: | 
-          echo "Code Coverage: 85%" > coverage.txt
-
-      - name: Add Coverage Summary
+      - name: Display Alert
         run: |
-          COVERAGE=$(cat coverage.txt)
-          echo "## 📊 Code Coverage Summary" >> $GITHUB_STEP_SUMMARY
-          echo "**Coverage:** $COVERAGE" >> $GITHUB_STEP_SUMMARY
+          echo '<div style="background:#ffcc00;padding:10px;border-radius:5px;font-size:16px;">⚠️ Warning: API rate limit reached!</div>' >> $GITHUB_STEP_SUMMARY
