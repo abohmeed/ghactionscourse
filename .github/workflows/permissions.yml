@@ -1,0 +1,13 @@
+name: Create Issue with GITHUB_TOKEN
+on:
+  workflow_dispatch:
+permissions:
+  issues: write
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create a GitHub issue using GITHUB_TOKEN
+      run: gh issue create --title "Bug report" --body "Something went wrong!" --repo ${{ github.repository }}
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
